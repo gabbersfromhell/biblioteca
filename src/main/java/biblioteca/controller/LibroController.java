@@ -29,4 +29,11 @@ public class LibroController {
     public Libro buscarPorId(@PathVariable Long id) {
         return libroService.buscarPorId(id);
     }
+
+    @PutMapping("/libros/{id}")
+    public Libro actualizarLibro(@PathVariable Long id,
+                                 @RequestBody Libro libro) {
+
+        return libroService.actualizarLibro(id, libro);
+    }
 }

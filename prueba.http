@@ -6,3 +6,24 @@ Content-Type: application/json
   "titulo": "El Quijote",
   "autor": "Miguel de Cervantes"
 }
+
+###
+
+PUT http://localhost:8080/libros/1
+Content-Type: application/json
+
+{
+  "isbn": "9788408054970",
+  "titulo": "Don Quijote de la Mancha",
+  "autor": "Miguel de Cervantes"
+}
+###
+
+PUT http://localhost:8080/libros/999
+Content-Type: application/json
+
+{
+  "isbn": "123456789",
+  "titulo": "Libro inexistente",
+  "autor": "Autor prueba"
+}

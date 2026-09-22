@@ -27,4 +27,14 @@ public class LibroService {
         return libroRepository.findById(id)
                 .orElseThrow(() -> new LibroNoEncontradoException("Libro no encontrado"));
     }
+    public Libro actualizarLibro(Long id, Libro datosLibro) {
+
+        Libro libro = buscarPorId(id);
+
+        libro.setIsbn(datosLibro.getIsbn());
+        libro.setTitulo(datosLibro.getTitulo());
+        libro.setAutor(datosLibro.getAutor());
+
+        return libroRepository.save(libro);
+    }
 }

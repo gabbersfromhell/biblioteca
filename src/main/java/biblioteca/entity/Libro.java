@@ -16,19 +16,20 @@ public class Libro {
     private String titulo;
     private String autor;
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+
     public void setId(Long id) {
         this.id = id;
-    }
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public String getIsbn() {
         return isbn;
     }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     public String getAutor() {
         return autor;
     }
@@ -37,9 +38,7 @@ public class Libro {
         this.autor = autor;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getTitulo() {return titulo;}
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
