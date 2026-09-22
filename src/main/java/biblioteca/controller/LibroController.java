@@ -1,0 +1,32 @@
+package biblioteca.controller;
+
+import biblioteca.entity.Libro;
+import biblioteca.service.LibroService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class LibroController {
+
+    private final LibroService libroService;
+
+    public LibroController(LibroService libroService) {
+        this.libroService = libroService;
+    }
+
+    @GetMapping("/libros")
+    public List<Libro> listarLibros() {
+        return libroService.listarLibros();
+    }
+
+    @PostMapping("/libros")
+    public Libro guardarLibro(@RequestBody Libro libro) {
+        return libroService.guardarLibro(libro);
+    }
+
+    @GetMapping("/libros/{id}")
+    public Libro buscarPorId(@PathVariable Long id) {
+        return libroService.buscarPorId(id);
+    }
+}

@@ -1,0 +1,8 @@
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "9788408054970",
+  "titulo": "El Quijote",
+  "autor": "Miguel de Cervantes"
+}
