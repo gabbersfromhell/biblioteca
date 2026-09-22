@@ -40,3 +40,24 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8080/libros/2
+
+###
+
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}
+
+###
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}

@@ -2,6 +2,7 @@ package biblioteca.controller;
 
 import biblioteca.entity.Libro;
 import biblioteca.service.LibroService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class LibroController {
     }
 
     @PostMapping("/libros")
-    public Libro guardarLibro(@RequestBody Libro libro) {
+    public Libro guardarLibro(@Valid @RequestBody Libro libro) {
         return libroService.guardarLibro(libro);
     }
 

@@ -25,8 +25,9 @@ public class LibroService {
 
     public Libro buscarPorId(Long id) {
         return libroRepository.findById(id)
-                .orElseThrow(() -> new LibroNoEncontradoException("Libro no encontrado"));
+                              .orElseThrow(() -> new LibroNoEncontradoException("Libro no encontrado"));
     }
+
     public Libro actualizarLibro(Long id, Libro datosLibro) {
 
         Libro libro = buscarPorId(id);
@@ -37,6 +38,7 @@ public class LibroService {
 
         return libroRepository.save(libro);
     }
+
     public void eliminarLibro(Long id) {
 
         Libro libro = buscarPorId(id);
