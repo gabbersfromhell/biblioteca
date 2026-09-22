@@ -61,3 +61,14 @@ Content-Type: application/json
   "titulo": "",
   "autor": ""
 }
+
+###
+PUT http://localhost:8080/libros/1
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}
+

@@ -34,8 +34,7 @@ public class LibroController {
 
     @PutMapping("/libros/{id}")
     public Libro actualizarLibro(@PathVariable Long id,
-                                 @RequestBody Libro libro) {
-
+                                 @Valid @RequestBody Libro libro) {
         return libroService.actualizarLibro(id, libro);
     }
     @DeleteMapping("/libros/{id}")
