@@ -27,3 +27,16 @@ Content-Type: application/json
   "titulo": "Libro inexistente",
   "autor": "Autor prueba"
 }
+###
+
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "9781234567890",
+  "titulo": "Libro para eliminar",
+  "autor": "Autor prueba"
+}
+###
+
+DELETE http://localhost:8080/libros/2

@@ -2,6 +2,7 @@ package biblioteca.controller;
 
 import biblioteca.entity.Libro;
 import biblioteca.service.LibroService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,5 +36,10 @@ public class LibroController {
                                  @RequestBody Libro libro) {
 
         return libroService.actualizarLibro(id, libro);
+    }
+    @DeleteMapping("/libros/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminarLibro(@PathVariable Long id) {
+        libroService.eliminarLibro(id);
     }
 }
