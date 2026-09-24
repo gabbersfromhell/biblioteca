@@ -37,6 +37,7 @@ public class LibroController {
                                  @Valid @RequestBody Libro libro) {
         return libroService.actualizarLibro(id, libro);
     }
+
     @DeleteMapping("/libros/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminarLibro(@PathVariable Long id) {
