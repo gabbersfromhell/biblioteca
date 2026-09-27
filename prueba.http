@@ -71,4 +71,235 @@ Content-Type: application/json
   "titulo": "",
   "autor": ""
 }
+###
+POST http://localhost:8080/libros
+Content-Type: application/json
 
+{
+  "isbn": "9788408054970",
+  "titulo": "Don Quijote de la Mancha",
+  "autor": "Miguel de Cervantes"
+}
+###
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}
+###
+PUT http://localhost:8080/libros/3
+Content-Type: application/json
+
+{
+  "isbn": "9788408054970",
+  "titulo": "Don Quijote de la Mancha - Edición actualizada",
+  "autor": "Miguel de Cervantes"
+}
+###
+PUT http://localhost:8080/libros/3
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}
+
+### 1. CREAR LIBRO - POST
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "9788445071408",
+  "titulo": "El Señor de los Anillos",
+  "autor": "J. R. R. Tolkien"
+}
+
+
+### 2. LISTAR TODOS LOS LIBROS - GET
+GET http://localhost:8080/libros
+
+
+### 3. BUSCAR LIBRO POR ID - GET
+GET http://localhost:8080/libros/3
+
+
+### 4. ACTUALIZAR LIBRO - PUT
+PUT http://localhost:8080/libros/3
+Content-Type: application/json
+
+{
+  "isbn": "9788408054970",
+  "titulo": "Don Quijote de la Mancha - Edición revisada",
+  "autor": "Miguel de Cervantes"
+}
+
+
+### 5. BUSCAR ID INEXISTENTE - GET
+GET http://localhost:8080/libros/999
+
+
+### 6. POST CON DATOS INCORRECTOS
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}
+
+
+### 7. PUT CON DATOS INCORRECTOS
+PUT http://localhost:8080/libros/3
+Content-Type: application/json
+
+{
+  "isbn": "",
+  "titulo": "",
+  "autor": ""
+}
+
+### PUT CORRECTO
+PUT http://localhost:8080/libros/3
+Content-Type: application/json
+
+{
+  "isbn": "9788408054970",
+  "titulo": "Don Quijote de la Mancha - Edición revisada",
+  "autor": "Miguel de Cervantes"
+}
+
+### GET LIBRO INEXISTENTE
+GET http://localhost:8080/libros/999
+
+### LISTAR TODOS
+GET http://localhost:8080/libros
+
+### GET POR ID
+GET http://localhost:8080/libros/3
+
+### Buscar libros por título
+GET http://localhost:8080/libros/buscar?titulo=quijote
+
+### IgnoreCase
+GET http://localhost:8080/libros/buscar?titulo=QUIJOTE
+
+### IgnoreCase
+GET http://localhost:8080/libros/buscar?titulo=QUIJOTE
+
+###
+
+### Containing
+GET http://localhost:8080/libros/buscar?titulo=mancha
+
+###
+
+### Solo debería encontrar la edición revisada
+GET http://localhost:8080/libros/buscar?titulo=revisada
+
+###
+
+### Ninguna coincidencia
+GET http://localhost:8080/libros/buscar?titulo=harry
+
+### Buscar por autor ignorando mayúsculas
+GET http://localhost:8080/libros/buscar/autor?autor=CERVANTES
+###
+GET http://localhost:8080/libros/buscar/filtro?titulo=quijote&autor=cervantes
+###
+GET http://localhost:8080/libros/buscar/filtro-or?titulo=quijote&autor=tolkien
+
+###
+GET http://localhost:8080/libros?pagina=1&tamanio=1
+### Crear Drácula
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "9780000000001",
+  "titulo": "Drácula",
+  "autor": "Bram Stoker"
+}
+
+###
+
+### Crear Sherlock Holmes
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "9780000000002",
+  "titulo": "Sherlock Holmes",
+  "autor": "Arthur Conan Doyle"
+}
+###
+### Crear 50 libros
+POST http://localhost:8080/libros/lote
+Content-Type: application/json
+
+[
+  {"isbn":"9780000000001","titulo":"1984","autor":"George Orwell"},
+  {"isbn":"9780000000002","titulo":"Rebelión en la granja","autor":"George Orwell"},
+  {"isbn":"9780000000003","titulo":"Drácula","autor":"Bram Stoker"},
+  {"isbn":"9780000000004","titulo":"Frankenstein","autor":"Mary Shelley"},
+  {"isbn":"9780000000005","titulo":"Sherlock Holmes: Estudio en escarlata","autor":"Arthur Conan Doyle"},
+  {"isbn":"9780000000006","titulo":"El signo de los cuatro","autor":"Arthur Conan Doyle"},
+  {"isbn":"9780000000007","titulo":"El sabueso de los Baskerville","autor":"Arthur Conan Doyle"},
+  {"isbn":"9780000000008","titulo":"El valle del terror","autor":"Arthur Conan Doyle"},
+  {"isbn":"9780000000009","titulo":"Moby Dick","autor":"Herman Melville"},
+  {"isbn":"9780000000010","titulo":"La isla del tesoro","autor":"Robert Louis Stevenson"},
+  {"isbn":"9780000000011","titulo":"El extraño caso del doctor Jekyll y Mr. Hyde","autor":"Robert Louis Stevenson"},
+  {"isbn":"9780000000012","titulo":"Veinte mil leguas de viaje submarino","autor":"Julio Verne"},
+  {"isbn":"9780000000013","titulo":"Viaje al centro de la Tierra","autor":"Julio Verne"},
+  {"isbn":"9780000000014","titulo":"La vuelta al mundo en ochenta días","autor":"Julio Verne"},
+  {"isbn":"9780000000015","titulo":"La máquina del tiempo","autor":"H. G. Wells"},
+  {"isbn":"9780000000016","titulo":"La guerra de los mundos","autor":"H. G. Wells"},
+  {"isbn":"9780000000017","titulo":"El hombre invisible","autor":"H. G. Wells"},
+  {"isbn":"9780000000018","titulo":"Fahrenheit 451","autor":"Ray Bradbury"},
+  {"isbn":"9780000000019","titulo":"Crónicas marcianas","autor":"Ray Bradbury"},
+  {"isbn":"9780000000020","titulo":"Un mundo feliz","autor":"Aldous Huxley"},
+  {"isbn":"9780000000021","titulo":"El retrato de Dorian Gray","autor":"Oscar Wilde"},
+  {"isbn":"9780000000022","titulo":"Los miserables","autor":"Victor Hugo"},
+  {"isbn":"9780000000023","titulo":"Nuestra Señora de París","autor":"Victor Hugo"},
+  {"isbn":"9780000000024","titulo":"Crimen y castigo","autor":"Fiódor Dostoyevski"},
+  {"isbn":"9780000000025","titulo":"Los hermanos Karamázov","autor":"Fiódor Dostoyevski"},
+  {"isbn":"9780000000026","titulo":"El jugador","autor":"Fiódor Dostoyevski"},
+  {"isbn":"9780000000027","titulo":"Guerra y paz","autor":"León Tolstói"},
+  {"isbn":"9780000000028","titulo":"Anna Karénina","autor":"León Tolstói"},
+  {"isbn":"9780000000029","titulo":"La metamorfosis","autor":"Franz Kafka"},
+  {"isbn":"9780000000030","titulo":"El proceso","autor":"Franz Kafka"},
+  {"isbn":"9780000000031","titulo":"El castillo","autor":"Franz Kafka"},
+  {"isbn":"9780000000032","titulo":"El gran Gatsby","autor":"F. Scott Fitzgerald"},
+  {"isbn":"9780000000033","titulo":"Las aventuras de Tom Sawyer","autor":"Mark Twain"},
+  {"isbn":"9780000000034","titulo":"Las aventuras de Huckleberry Finn","autor":"Mark Twain"},
+  {"isbn":"9780000000035","titulo":"Robinson Crusoe","autor":"Daniel Defoe"},
+  {"isbn":"9780000000036","titulo":"Los viajes de Gulliver","autor":"Jonathan Swift"},
+  {"isbn":"9780000000037","titulo":"Orgullo y prejuicio","autor":"Jane Austen"},
+  {"isbn":"9780000000038","titulo":"Sentido y sensibilidad","autor":"Jane Austen"},
+  {"isbn":"9780000000039","titulo":"Jane Eyre","autor":"Charlotte Brontë"},
+  {"isbn":"9780000000040","titulo":"Cumbres borrascosas","autor":"Emily Brontë"},
+  {"isbn":"9780000000041","titulo":"El conde de Montecristo","autor":"Alexandre Dumas"},
+  {"isbn":"9780000000042","titulo":"Los tres mosqueteros","autor":"Alexandre Dumas"},
+  {"isbn":"9780000000043","titulo":"Alicia en el país de las maravillas","autor":"Lewis Carroll"},
+  {"isbn":"9780000000044","titulo":"Peter Pan","autor":"J. M. Barrie"},
+  {"isbn":"9780000000045","titulo":"El libro de la selva","autor":"Rudyard Kipling"},
+  {"isbn":"9780000000046","titulo":"La llamada de lo salvaje","autor":"Jack London"},
+  {"isbn":"9780000000047","titulo":"Colmillo blanco","autor":"Jack London"},
+  {"isbn":"9780000000048","titulo":"El corazón de las tinieblas","autor":"Joseph Conrad"},
+  {"isbn":"9780000000049","titulo":"El viejo y el mar","autor":"Ernest Hemingway"},
+  {"isbn":"9780000000050","titulo":"Por quién doblan las campanas","autor":"Ernest Hemingway"}
+]
+###
+GET http://localhost:8080/libros?pagina=0&tamanio=10&direccion=asc
+###
+GET http://localhost:8080/libros?pagina=5&tamanio=10&direccion=asc
+###
+GET http://localhost:8080/libros?pagina=0&tamanio=10&direccion=desc
+###
+GET http://localhost:8080/libros?pagina=-1&tamanio=10&direccion=asc
+###
+GET http://localhost:8080/libros?pagina=0&tamanio=1000&direccion=asc

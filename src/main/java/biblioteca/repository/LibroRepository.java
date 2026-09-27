@@ -3,6 +3,13 @@ package biblioteca.repository;
 import biblioteca.entity.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LibroRepository extends JpaRepository<Libro, Long> {
+import java.util.List;
 
+public interface LibroRepository extends JpaRepository<Libro, Long> {
+    List<Libro> findByTituloContainingIgnoreCase(String titulo);
+    List<Libro> findByAutorContainingIgnoreCase(String autor);
+    List<Libro> findByTituloContainingIgnoreCaseAndAutorContainingIgnoreCase(
+                String titulo, String autor);
+    List<Libro> findByTituloContainingIgnoreCaseOrAutorContainingIgnoreCase(
+            String titulo, String autor);
 }
