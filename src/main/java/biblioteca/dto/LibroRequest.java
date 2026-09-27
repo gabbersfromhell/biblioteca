@@ -1,6 +1,7 @@
 package biblioteca.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class LibroRequest {
 
@@ -10,8 +11,8 @@ public class LibroRequest {
     @NotBlank(message = "El título es obligatorio")
     private String titulo;
 
-    @NotBlank(message = "El autor es obligatorio")
-    private String autor;
+    @NotNull(message = "El autor es obligatorio")
+    private Long autorId;
 
     public String getIsbn() {
         return isbn;
@@ -29,11 +30,11 @@ public class LibroRequest {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public Long getAutorId() {
+        return autorId;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAutorId(Long autorId) {
+        this.autorId = autorId;
     }
 }

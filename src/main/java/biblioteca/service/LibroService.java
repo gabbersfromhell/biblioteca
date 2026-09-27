@@ -2,8 +2,10 @@ package biblioteca.service;
 
 import biblioteca.dto.LibroRequest;
 import biblioteca.dto.LibroResponse;
+import biblioteca.entity.Autor;
 import biblioteca.entity.Libro;
 import biblioteca.exception.LibroNoEncontradoException;
+import biblioteca.repository.AutorRepository;
 import biblioteca.repository.LibroRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,9 +19,12 @@ import java.util.List;
 public class LibroService {
 
     private final LibroRepository libroRepository;
+    private final AutorRepository autorRepository;
 
-    public LibroService(LibroRepository libroRepository) {
+    public LibroService(LibroRepository libroRepository,
+                        AutorRepository autorRepository) {
         this.libroRepository = libroRepository;
+        this.autorRepository = autorRepository;
     }
 
     public Page<LibroResponse> listarLibros(
@@ -74,11 +79,13 @@ public class LibroService {
 
     public LibroResponse guardarLibro(LibroRequest libroRequest) {
 
+        Autor autor = buscarAutorPorId(libroRequest.getAutorId());
+
         Libro libro = new Libro();
 
         libro.setIsbn(libroRequest.getIsbn());
         libro.setTitulo(libroRequest.getTitulo());
-        libro.setAutor(libroRequest.getAutor());
+        libro.setAutor(autor);
 
         Libro libroGuardado = libroRepository.save(libro);
 
@@ -90,11 +97,13 @@ public class LibroService {
         return librosRequest.stream()
                 .map(libroRequest -> {
 
+                    Autor autor = buscarAutorPorId(libroRequest.getAutorId());
+
                     Libro libro = new Libro();
 
                     libro.setIsbn(libroRequest.getIsbn());
                     libro.setTitulo(libroRequest.getTitulo());
-                    libro.setAutor(libroRequest.getAutor());
+                    libro.setAutor(autor);
 
                     Libro libroGuardado = libroRepository.save(libro);
 
@@ -113,10 +122,11 @@ public class LibroService {
     public LibroResponse actualizarLibro(Long id, LibroRequest libroRequest) {
 
         Libro libro = buscarEntidadPorId(id);
+        Autor autor = buscarAutorPorId(libroRequest.getAutorId());
 
         libro.setIsbn(libroRequest.getIsbn());
         libro.setTitulo(libroRequest.getTitulo());
-        libro.setAutor(libroRequest.getAutor());
+        libro.setAutor(autor);
 
         Libro libroActualizado = libroRepository.save(libro);
 
@@ -137,6 +147,13 @@ public class LibroService {
                         new LibroNoEncontradoException("Libro no encontrado"));
     }
 
+    private Autor buscarAutorPorId(Long id) {
+
+        return autorRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Autor no encontrado"));
+    }
+
     private LibroResponse convertirAResponse(Libro libro) {
 
         LibroResponse response = new LibroResponse();
@@ -144,7 +161,7 @@ public class LibroService {
         response.setId(libro.getId());
         response.setIsbn(libro.getIsbn());
         response.setTitulo(libro.getTitulo());
-        response.setAutor(libro.getAutor());
+        response.setAutor(libro.getAutor().getNombre());
 
         return response;
     }
@@ -159,25 +176,32 @@ public class LibroService {
 
     public List<LibroResponse> buscarPorAutor(String autor) {
 
-        return libroRepository.findByAutorContainingIgnoreCase(autor)
+        return libroRepository
+                .findByAutor_NombreContainingIgnoreCase(autor)
                 .stream()
                 .map(this::convertirAResponse)
                 .toList();
     }
 
-    public List<LibroResponse> buscarPorTituloYAutor(String titulo, String autor) {
+    public List<LibroResponse> buscarPorTituloYAutor(
+            String titulo,
+            String autor) {
 
         return libroRepository
-                .findByTituloContainingIgnoreCaseAndAutorContainingIgnoreCase(titulo, autor)
+                .findByTituloContainingIgnoreCaseAndAutor_NombreContainingIgnoreCase(
+                        titulo, autor)
                 .stream()
                 .map(this::convertirAResponse)
                 .toList();
     }
 
-    public List<LibroResponse> buscarPorTituloOAutor(String titulo, String autor) {
+    public List<LibroResponse> buscarPorTituloOAutor(
+            String titulo,
+            String autor) {
 
         return libroRepository
-                .findByTituloContainingIgnoreCaseOrAutorContainingIgnoreCase(titulo, autor)
+                .findByTituloContainingIgnoreCaseOrAutor_NombreContainingIgnoreCase(
+                        titulo, autor)
                 .stream()
                 .map(this::convertirAResponse)
                 .toList();

@@ -303,3 +303,34 @@ GET http://localhost:8080/libros?pagina=0&tamanio=10&direccion=desc
 GET http://localhost:8080/libros?pagina=-1&tamanio=10&direccion=asc
 ###
 GET http://localhost:8080/libros?pagina=0&tamanio=1000&direccion=asc
+###
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "TEST-002",
+  "titulo": "Nueva prueba",
+  "autorId": 11
+}
+###
+POST http://localhost:8080/libros
+Content-Type: application/json
+
+{
+  "isbn": "TEST-002",
+  "titulo": "Nueva prueba",
+  "autorId": 11
+}
+###
+GET http://localhost:8080/libros/
+###
+GET http://localhost:8080/libros/buscar/autor?autor=George
+###
+PUT http://localhost:8080/libros/54
+Content-Type: application/json
+
+{
+  "isbn": "TEST-002",
+  "titulo": "Nueva prueba modificada",
+  "autorId": 8
+}

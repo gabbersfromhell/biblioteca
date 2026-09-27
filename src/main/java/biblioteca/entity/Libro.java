@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -19,8 +21,9 @@ public class Libro {
     @NotBlank(message = "El título es obligatorio")
     private String titulo;
 
-    @NotBlank(message = "El autor es obligatorio")
-    private String autor;
+    @ManyToOne
+    @JoinColumn(name = "autor_id", nullable = false)
+    private Autor autor;
 
     public Long getId() { return id; }
 
@@ -28,15 +31,13 @@ public class Libro {
 
     public String getIsbn() { return isbn; }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getAutor() { return autor; }
-
-    public void setAutor(String autor) { this.autor = autor; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
 
     public String getTitulo() { return titulo; }
 
     public void setTitulo(String titulo) { this.titulo = titulo; }
+
+    public Autor getAutor() { return autor; }
+
+    public void setAutor(Autor autor) { this.autor = autor; }
 }
