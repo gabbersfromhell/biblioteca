@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
@@ -53,5 +54,21 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(error);
+    }
+
+    @ExceptionHandler(EjemplarNoEncontradoException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, String> manejarEjemplarNoEncontrado(
+            EjemplarNoEncontradoException ex) {
+
+        return Map.of("error", ex.getMessage());
+    }
+
+    @ExceptionHandler(EjemplarDuplicadoException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Map<String, String> manejarEjemplarDuplicado(
+            EjemplarDuplicadoException ex) {
+
+        return Map.of("error", ex.getMessage());
     }
 }

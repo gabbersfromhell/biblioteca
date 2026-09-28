@@ -334,3 +334,80 @@ Content-Type: application/json
   "titulo": "Nueva prueba modificada",
   "autorId": 8
 }
+
+###
+POST http://localhost:8080/ejemplares
+Content-Type: application/json
+
+{
+  "numero": 1,
+  "libroId": 4
+}
+###
+GET http://localhost:8080/ejemplares
+###
+GET http://localhost:8080/ejemplares/1
+###
+PUT http://localhost:8080/ejemplares/1
+Content-Type: application/json
+
+{
+  "numero": 2,
+  "libroId": 5
+}
+###
+POST http://localhost:8080/ejemplares
+Content-Type: application/json
+
+{
+  "numero": 3,
+  "libroId": 5
+}
+###
+DELETE http://localhost:8080/ejemplares/2
+###
+GET http://localhost:8080/ejemplares
+###
+GET http://localhost:8080/ejemplares/2
+###
+POST http://localhost:8080/ejemplares
+Content-Type: application/json
+
+{
+  "numero": 2,
+  "libroId": 5
+}
+###
+POST http://localhost:8080/ejemplares
+Content-Type: application/json
+
+{
+  "numero": 2,
+  "libroId": 4
+}
+###
+PUT http://localhost:8080/ejemplares/3
+Content-Type: application/json
+
+{
+  "numero": 2,
+  "libroId": 5
+}
+
+###
+PUT http://localhost:8080/ejemplares/3
+Content-Type: application/json
+
+{
+  "numero": 2,
+  "libroId": 4
+}
+
+###
+POST http://localhost:8080/ejemplares
+Content-Type: application/json
+
+{
+  "numero": 2,
+  "libroId": 5
+}
